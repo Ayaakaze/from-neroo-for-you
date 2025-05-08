@@ -1,158 +1,106 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Surat Cinta dari Neroo</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ffe6f0, #ffcce0);
-      overflow: hidden;
-    }
-
-    .container {
-      position: relative;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    .love {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Heart_coraz%C3%B3n.svg/1024px-Heart_coraz%C3%B3n.svg.png');
-      background-size: cover;
-      opacity: 0.7;
-      animation: fall 4s linear infinite;
-    }
-
-    @keyframes fall {
-      0% {transform: translateY(-40px) rotate(0deg);}
-      100% {transform: translateY(110vh) rotate(360deg);}
-    }
-
-    .dialog-box {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      background: rgba(255, 182, 193, 0.7);
-      border-radius: 15px;
-      padding: 20px;
-      color: #4d004d;
-      box-shadow: 0 0 10px #ff99cc;
-      transition: all 0.4s ease-in-out;
-    }
-
-    .choices {
-      margin-top: 20px;
-    }
-
-    .choices button {
-      margin-right: 10px;
-      padding: 10px 20px;
-      background-color: #ff99cc;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .choices button:hover {
-      background-color: #e066a7;
-    }
-
-    .fade {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-
-    .show {
-      opacity: 1;
-      pointer-events: all;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Cinta</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, pink, white);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #333;
+            overflow: hidden;
+        }
+        .dialog-box {
+            background-color: rgba(255, 192, 203, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            transition: all 0.5s ease;
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: pink;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #ff69b4;
+        }
+        .love {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            color: red;
+            animation: fall 2s infinite;
+        }
+        @keyframes fall {
+            0% { top: -50px; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div id="dialog" class="dialog-box show">
-      <div id="dialogText">Perkenalkan seorang website developer bernama <strong>Neroo</strong> yang mencintai seorang dengan wajah yang imut tapi dengan tinggi yang pendek dan dada yang kecil cup A/B... Tapi dia ingin menyatakan cintanya hari ini...</div>
-      <div class="choices" id="choices">
-        <button onclick="choose(1)">Oh yaudah</button>
-        <button onclick="choose(2)">Hmm Nanti Ku pikir</button>
-        <button onclick="choose(3)">Aku terima Kok</button>
-      </div>
-    </div>
-  </div>
 
-  <script>
-    let dialogIndex = 0;
+<div class="dialog-box" id="dialogBox">
+    <p id="dialogText">Perkenalkan, seorang website developer bernama Neroo yang mencintai seorang dengan wajah yang imut, tapi dengan tinggi yang pendek dan dada yang kecil (cup A/B). Apakah kamu mau jadi pacarku?</p>
+    <button class="button" onclick="chooseOption(1)">Oh yaudah</button>
+    <button class="button" onclick="chooseOption(2)">Hmm Nanti Ku pikir</button>
+    <button class="button" onclick="chooseOption(3)">Aku terima Kok</button>
+</div>
 
-    function setDialog(text, options = []) {
-      const dialog = document.getElementById("dialog");
-      const dialogText = document.getElementById("dialogText");
-      const choices = document.getElementById("choices");
+<div class="love" id="loveAnimation">❤️</div>
 
-      dialog.classList.remove("show");
-      setTimeout(() => {
-        dialogText.innerHTML = text;
-        choices.innerHTML = '';
-        options.forEach(opt => {
-          const btn = document.createElement("button");
-          btn.innerText = opt.text;
-          btn.onclick = opt.action;
-          choices.appendChild(btn);
-        });
-        dialog.classList.add("show");
-      }, 400);
-    }
+<script>
+    let currentDialog = 1;
 
-    function choose(option) {
-      if (dialogIndex === 0) {
-        if (option === 1) setDialog("...........");
-        else if (option === 2) {
-          dialogIndex = 1;
-          setDialog("Hmmm... Tolong pikirkan baik-baik ya, karena hatiku serius dan bukan main-main. Aku ingin kamu tahu betapa berharganya dirimu di mataku.", [
-            { text: "Bercanda doang", action: () => choose(4) },
-            { text: "Serius Kok", action: () => choose(5) }
-          ]);
-        } else if (option === 3) {
-          dialogIndex = 2;
-          setDialog("Eh? Beneran...? Tapi aku... aku belum siap... maksudku... aku seneng banget sih...", [
-            { text: "I Love You", action: () => choose(6) }
-          ]);
+    function chooseOption(option) {
+        const dialogText = document.getElementById('dialogText');
+        if (currentDialog === 1) {
+            if (option === 1) {
+                dialogText.innerText = "...........";
+            } else if (option === 2) {
+                dialogText.innerText = "Pikirkan sematang-matangnya, ya. Aku benar-benar serius.";
+            } else if (option === 3) {
+                currentDialog = 2;
+                dialogText.innerText = "Hmm, apakah kamu yakin?";
+                return;
+            }
+        } else if (currentDialog === 2) {
+            if (option === 1) {
+                dialogText.innerText = "...........";
+            } else if (option === 2) {
+                currentDialog = 3;
+                dialogText.innerText = "Aku hanya ingin memastikan perasaanmu.";
+                return;
+            }
+        } else if (currentDialog === 3) {
+            if (option === 1) {
+                dialogText.innerText = "I Love You";
+                showLoveAnimation();
+                // Call function to send Telegram notification here
+            }
         }
-      } else if (option === 4) {
-        setDialog("...........");
-      } else if (option === 5) {
-        dialogIndex = 3;
-        setDialog("Ehh... jadi kamu... kamu beneran suka juga...? Dasar... baka... tapi makasih ya... aku seneng banget!", [
-          { text: "I Love You", action: () => choose(6) }
-        ]);
-      } else if (option === 6) {
-        showLoveRain();
-      }
+        currentDialog++;
     }
 
-    function showLoveRain() {
-      const container = document.querySelector('.container');
-      for (let i = 0; i < 20; i++) {
-        const love = document.createElement('div');
-        love.className = 'love';
-        love.style.left = Math.random() * 100 + 'vw';
-        love.style.animationDuration = (Math.random() * 2 + 3) + 's';
-        container.appendChild(love);
-        setTimeout(() => love.remove(), 5000);
-      }
-
-      setDialog("Aku juga... I love you too... Tapi jangan bilang siapa-siapa ya! Bakaa!", []);
+    function showLoveAnimation() {
+        const loveAnimation = document.getElementById('loveAnimation');
+        loveAnimation.style.display = 'block';
+        setTimeout(() => {
+            loveAnimation.style.display = 'none';
+        }, 2000);
     }
-  </script>
+</script>
+
 </body>
 </html>
