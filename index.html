@@ -1,106 +1,262 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Cinta</title>
+    <title>Surat Cinta dari Neroo</title>
     <style>
         body {
-            background: linear-gradient(to bottom, pink, white);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffeef2 100%);
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
+            position: relative;
         }
+
+        .love-decoration {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.3);
+            font-size: 24px;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
         .dialog-box {
-            background-color: rgba(255, 192, 203, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 50px auto;
             width: 80%;
             max-width: 600px;
+            background-color: rgba(255, 182, 193, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
             transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards;
         }
-        .button {
-            margin: 10px;
-            padding: 10px 20px;
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dialog-text {
+            font-size: 18px;
+            color: #5a2a3e;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            background-color: rgba(255, 255, 255, 0.7);
             border: none;
-            border-radius: 5px;
-            background-color: pink;
+            padding: 10px 20px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 16px;
+            color: #d23669;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(210, 54, 105, 0.3);
         }
-        .button:hover {
-            background-color: #ff69b4;
+
+        .option-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        .love {
-            display: none;
+
+        .love-rain {
             position: absolute;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 50px;
-            color: red;
-            animation: fall 2s infinite;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
         }
+
+        .love {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: fall linear;
+        }
+
         @keyframes fall {
-            0% { top: -50px; opacity: 1; }
-            100% { top: 100%; opacity: 0; }
+            to {
+                transform: translateY(100vh);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Love decorations in background -->
+    <div class="love-decoration" style="top: 10%; left: 15%;">❤</div>
+    <div class="love-decoration" style="top: 25%; right: 20%;">❤</div>
+    <div class="love-decoration" style="bottom: 15%; left: 25%;">❤</div>
+    <div class="love-decoration" style="bottom: 30%; right: 15%;">❤</div>
 
-<div class="dialog-box" id="dialogBox">
-    <p id="dialogText">Perkenalkan, seorang website developer bernama Neroo yang mencintai seorang dengan wajah yang imut, tapi dengan tinggi yang pendek dan dada yang kecil (cup A/B). Apakah kamu mau jadi pacarku?</p>
-    <button class="button" onclick="chooseOption(1)">Oh yaudah</button>
-    <button class="button" onclick="chooseOption(2)">Hmm Nanti Ku pikir</button>
-    <button class="button" onclick="chooseOption(3)">Aku terima Kok</button>
-</div>
+    <!-- Dialog box -->
+    <div class="dialog-box" id="dialogBox">
+        <div class="dialog-text" id="dialogText"></div>
+        <div class="options" id="options"></div>
+    </div>
 
-<div class="love" id="loveAnimation">❤️</div>
+    <!-- Love rain effect -->
+    <div class="love-rain" id="loveRain"></div>
 
-<script>
-    let currentDialog = 1;
+    <script>
+        // Dialog data
+        const dialogs = {
+            "dialog1": {
+                text: "Perkenalkan, seorang website developer bernama Neroo yang mencintai seseorang dengan wajah yang imut tapi dengan tinggi yang pendek dan dada yang kecil cup A/B, dan dengan text menembak cewe tersebut",
+                options: [
+                    { text: "Oh yaudah", next: "end1" },
+                    { text: "Hmm Nanti Ku pikir", next: "dialog2a" },
+                    { text: "Aku terima Kok", next: "dialog3" }
+                ]
+            },
+            "dialog2a": {
+                text: "Aku ingin kamu memikirkan ini dengan matang... Karena perasaanku ini tulus seperti kode yang sempurna tanpa bug.",
+                options: [
+                    { text: "Lanjutkan", next: "dialog2" }
+                ]
+            },
+            "dialog2": {
+                text: "*Neroo terlihat tidak yakin dan berusaha memastikan* Kamu serius?",
+                options: [
+                    { text: "Bercanda doang", next: "end1" },
+                    { text: "Serius Kok", next: "dialog3" }
+                ]
+            },
+            "dialog3": {
+                text: "*Neroo agak gugup tapi senang dengan sikap Tsundere yang imut* A-aku...",
+                options: [
+                    { text: "I Love You", next: "loveEffect" }
+                ]
+            },
+            "end1": {
+                text: "...........",
+                options: []
+            }
+        };
 
-    function chooseOption(option) {
+        // Current dialog
+        let currentDialog = "dialog1";
+
+        // DOM elements
         const dialogText = document.getElementById('dialogText');
-        if (currentDialog === 1) {
-            if (option === 1) {
-                dialogText.innerText = "...........";
-            } else if (option === 2) {
-                dialogText.innerText = "Pikirkan sematang-matangnya, ya. Aku benar-benar serius.";
-            } else if (option === 3) {
-                currentDialog = 2;
-                dialogText.innerText = "Hmm, apakah kamu yakin?";
-                return;
-            }
-        } else if (currentDialog === 2) {
-            if (option === 1) {
-                dialogText.innerText = "...........";
-            } else if (option === 2) {
-                currentDialog = 3;
-                dialogText.innerText = "Aku hanya ingin memastikan perasaanmu.";
-                return;
-            }
-        } else if (currentDialog === 3) {
-            if (option === 1) {
-                dialogText.innerText = "I Love You";
-                showLoveAnimation();
-                // Call function to send Telegram notification here
-            }
+        const optionsContainer = document.getElementById('options');
+        const dialogBox = document.getElementById('dialogBox');
+        const loveRain = document.getElementById('loveRain');
+
+        // Display dialog
+        function showDialog(dialogId) {
+            currentDialog = dialogId;
+            const dialog = dialogs[dialogId];
+            
+            // Animate dialog box
+            dialogBox.style.animation = 'none';
+            dialogBox.offsetHeight; // Trigger reflow
+            dialogBox.style.animation = 'fadeIn 0.5s forwards';
+            
+            // Typewriter effect
+            let i = 0;
+            dialogText.textContent = '';
+            const typing = setInterval(() => {
+                if (i < dialog.text.length) {
+                    dialogText.textContent += dialog.text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                    showOptions(dialog.options);
+                }
+            }, 20);
+            
+            // Clear options while typing
+            optionsContainer.innerHTML = '';
         }
-        currentDialog++;
-    }
 
-    function showLoveAnimation() {
-        const loveAnimation = document.getElementById('loveAnimation');
-        loveAnimation.style.display = 'block';
-        setTimeout(() => {
-            loveAnimation.style.display = 'none';
-        }, 2000);
-    }
-</script>
+        // Show options
+        function showOptions(options) {
+            optionsContainer.innerHTML = '';
+            
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option.text;
+                button.onclick = () => {
+                    if (option.next === 'loveEffect') {
+                        showLoveEffect();
+                    } else {
+                        showDialog(option.next);
+                    }
+                };
+                optionsContainer.appendChild(button);
+            });
+        }
 
+        // Show love effect
+        function showLoveEffect() {
+            loveRain.style.display = 'block';
+            
+            // Create falling hearts
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'love';
+                    heart.textContent = '❤';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = -20 + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    loveRain.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000);
+                }, i * 300);
+            }
+            
+            // Change dialog text
+            dialogText.textContent = "*Neroo tersipu malu* A-aku juga mencintaimu...";
+            optionsContainer.innerHTML = '';
+        }
+
+        // Initialize
+        showDialog(currentDialog);
+
+        // Add more love decorations
+        for (let i = 0; i < 10; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'love-decoration';
+            heart.textContent = '❤';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDelay = (Math.random() * 5) + 's';
+            document.body.appendChild(heart);
+        }
+    </script>
 </body>
 </html>
