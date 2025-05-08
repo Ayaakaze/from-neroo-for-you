@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surat Rahasia~</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Kalam', cursive;
+      background: #0f2027; /* fallback */
+      background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027);
+      position: relative;
+      color: white;
+    }
+
+    .rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('https://i.ibb.co/F4zYFpp/rain.gif');
+      background-size: cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .container {
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .textbox {
+      background: rgba(0, 173, 239, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 40px 30px;
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 1.6rem;
+      max-width: 500px;
+      line-height: 1.6;
+      box-shadow: 0 0 15px rgba(0, 173, 239, 0.3);
+    }
+
+    .textbox::before {
+      content: "(っ'-')╮=͟͟͞͞💌";
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .textbox {
+        font-size: 1.2rem;
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="rain"></div>
+  <div class="container">
+    <div class="textbox">
+      Haiii... aku cuma mau bilang satu hal...  
+      <br><br>
+      Di tengah rintik hujan dan malam yang sepi ini...  
+      hatiku cuma kepikiran kamu...  
+      <br><br>
+      Jangan lupa jaga diri yaa~  
+      Karena ada seseorang yang diam-diam ngirim surat cintanya nih...  
+      <br><br>
+      (っ'-')╮=͟͟͞͞💌
+    </div>
+  </div>
+</body>
+</html>
