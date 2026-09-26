@@ -1,293 +1,319 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Cinta Romantis</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
-        
-        .love-decoration {
-            position: absolute;
-            font-size: 20px;
-            color: rgba(255, 105, 180, 0.5);
-            animation: float 5s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
-        }
-        
-        .dialog-container {
-            width: 80%;
-            max-width: 600px;
-            background-color: rgba(255, 182, 193, 0.7);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .character-name {
-            font-weight: bold;
-            color: #d23669;
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        
-        .dialog-text {
-            color: #5a2d3e;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .option-btn {
-            background-color: rgba(255, 105, 180, 0.7);
-            border: none;
-            border-radius: 20px;
-            padding: 8px 15px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .option-btn:hover {
-            background-color: rgba(255, 105, 180, 0.9);
-            transform: translateY(-2px);
-        }
-        
-        .love-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10;
-            display: none;
-        }
-        
-        .love {
-            position: absolute;
-            font-size: 20px;
-            color: #ff69b4;
-            animation: fall linear;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nasi Goreng Spesial — Resep Dapur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wok:#1C1410;
+    --wok2:#2A1E17;
+    --ember:#E8622C;
+    --ember-light:#F58B54;
+    --turmeric:#F2B705;
+    --rice:#F5EDE0;
+    --rice-dim:#E7DCC7;
+    --chili:#C1272D;
+    --herb:#7C9A5C;
+    --ink:#231A14;
+    --fg: var(--ink);
+    --bg: var(--rice);
+    --card: #FFFDF8;
+    --line: rgba(35,26,20,0.12);
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --fg:#F2EAD9; --bg:#15100C; --card:#1E1712; --line: rgba(242,234,217,0.14); --rice-dim:#2A2119;
+    }
+  }
+  :root[data-theme="dark"]{
+    --fg:#F2EAD9; --bg:#15100C; --card:#1E1712; --line: rgba(242,234,217,0.14); --rice-dim:#2A2119;
+  }
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:"Plus Jakarta Sans", sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,.display{font-family:"Fraunces", serif;}
+  img,svg{max-width:100%;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background: radial-gradient(120% 90% at 50% 0%, var(--wok2) 0%, var(--wok) 60%);
+    color:var(--rice);
+    padding: 3.6rem 1.4rem 3rem;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    color:var(--turmeric); font-weight:600; letter-spacing:.02em; font-size:.95rem;
+  }
+  .hero h1{
+    font-size: clamp(2.1rem, 7vw, 3.4rem);
+    font-weight:700; margin:.4rem 0 .7rem; line-height:1.05;
+  }
+  .hero p{
+    max-width:36ch; margin:0 auto; color: var(--rice-dim); font-size:1.02rem;
+  }
+  .wok-stage{
+    position:relative; width:min(320px, 78vw); margin:2.2rem auto 0; aspect-ratio:1/1;
+  }
+  .glow{
+    position:absolute; inset:-20%;
+    background: radial-gradient(closest-side, rgba(242,183,5,0.55), rgba(242,183,5,0) 70%);
+    filter: blur(6px);
+    animation: pulse 3.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:.65; transform:scale(1); }
+    50%{ opacity:1; transform:scale(1.06); }
+  }
+  .steam{ position:absolute; left:50%; top:8%; transform:translateX(-50%); width:70%; }
+  .steam path{
+    stroke:rgba(245,237,224,0.55); stroke-width:5; fill:none; stroke-linecap:round;
+    stroke-dasharray: 60 140; stroke-dashoffset:0;
+    animation: rise 3.6s linear infinite;
+  }
+  .steam path:nth-child(2){ animation-delay:-1.2s; opacity:.7;}
+  .steam path:nth-child(3){ animation-delay:-2.4s; opacity:.5;}
+  @keyframes rise{
+    0%{ stroke-dashoffset:200; opacity:0; }
+    15%{ opacity:1;}
+    85%{ opacity:.8;}
+    100%{ stroke-dashoffset:-40; opacity:0; }
+  }
+  .shine{
+    position:absolute; inset:0; border-radius:50%;
+    background: conic-gradient(from 220deg, transparent 0deg, rgba(255,255,255,0.35) 18deg, transparent 40deg, transparent 360deg);
+    animation: spin 5s linear infinite;
+    mix-blend-mode:screen;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  /* ---------- SECTIONS ---------- */
+  main{ max-width: 760px; margin:0 auto; padding: 0 1.2rem 4rem; }
+  section{ padding-top: 3rem; }
+  .kicker{
+    display:flex; align-items:center; gap:.6rem; color:var(--ember);
+    font-weight:700; font-size:1rem; margin-bottom:1rem;
+  }
+  .kicker svg{ width:22px; height:22px; flex:none; }
+  h2{ font-size:1.7rem; margin:.1rem 0 1rem; }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; color:var(--fg); opacity:.75;
+    font-size:.92rem; margin-top: -.4rem; margin-bottom: 1.6rem;
+  }
+  .meta-row span{ display:flex; align-items:center; gap:.4rem;}
+
+  /* ingredients */
+  .ing-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap:.8rem;
+  }
+  @media (min-width: 480px){ .ing-grid{ grid-template-columns: repeat(3, 1fr);} }
+  .ing{
+    position:relative; overflow:hidden;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding: .9rem .8rem; font-size:.92rem; font-weight:500;
+  }
+  .ing::after{
+    content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-18deg);
+    animation: sheen 4.5s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * .35s);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .ing::after{ background:linear-gradient(115deg, transparent, rgba(255,255,255,0.14), transparent); }
+  }
+  :root[data-theme="dark"] .ing::after{ background:linear-gradient(115deg, transparent, rgba(255,255,255,0.14), transparent); }
+  @keyframes sheen{
+    0%{ left:-60%; }
+    35%{ left:130%; }
+    100%{ left:130%; }
+  }
+  .ing b{ display:block; color:var(--ember); font-size:.78rem; font-weight:700; margin-bottom:.15rem;}
+
+  /* steps */
+  .steps{ display:flex; flex-direction:column; gap:0; }
+  .step{
+    position:relative; display:grid; grid-template-columns: 44px 1fr; gap: 1rem;
+    padding: 1.1rem 0;
+  }
+  .step:not(:last-child){ border-bottom:1px dashed var(--line); }
+  .step-num{
+    width:44px; height:44px; border-radius:50%;
+    background: linear-gradient(155deg, var(--ember-light), var(--ember));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:"Fraunces", serif; font-weight:700; font-size:1.15rem;
+    box-shadow: 0 4px 14px rgba(232,98,44,0.35);
+  }
+  .step h3{ margin:.1rem 0 .3rem; font-size:1.05rem; }
+  .step p{ margin:0; opacity:.9; font-size:.96rem; }
+  .flame{
+    display:inline-block; width:16px; height:16px; vertical-align:-3px; margin-left:.3rem;
+  }
+  .flame path{ animation: flicker 1.4s ease-in-out infinite; transform-origin: 50% 100%; }
+  @keyframes flicker{
+    0%,100%{ transform: scaleY(1) rotate(0deg); }
+    50%{ transform: scaleY(1.12) rotate(-2deg); }
+  }
+
+  /* plating */
+  .plate-wrap{
+    display:flex; justify-content:center; padding: 1rem 0 .5rem;
+  }
+  .plate{ width:min(260px, 70vw); position:relative; }
+  .plate .ring{
+    stroke-dasharray: 4 10; animation: rotateRing 14s linear infinite;
+    transform-origin:50% 50%;
+  }
+  @keyframes rotateRing{ to{ transform: rotate(360deg); } }
+
+  .note{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:1rem 1.1rem; font-size:.92rem; opacity:.9; margin-top:1.6rem;
+  }
+
+  footer{ text-align:center; padding: 2rem 1rem 3rem; opacity:.55; font-size:.85rem; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
 </head>
 <body>
-    <div class="dialog-container" id="dialogBox">
-        <div class="character-name">Neroo</div>
-        <div class="dialog-text" id="dialogText">...Jadi... ini mungkin terdengar tiba-tiba, dan ya, aku tahu aku lebih jago nulis kode daripada kata-kata... tapi aku gak bisa diem aja terus.</div>
+
+<header class="hero">
+  <div class="eyebrow">RESEP DAPUR RUMAHAN</div>
+  <h1 class="display">Nasi Goreng<br>Spesial</h1>
+  <p>Nasi goreng ala rumahan dengan aroma bawang dan kecap yang meresap, disajikan panas dengan telur mata sapi di atasnya.</p>
+
+  <div class="wok-stage">
+    <div class="glow"></div>
+    <svg class="steam" viewBox="0 0 120 100" aria-hidden="true">
+      <path d="M30 90 C 20 70, 45 60, 35 40 C 28 25, 45 15, 40 0"/>
+      <path d="M60 90 C 50 70, 75 60, 65 40 C 58 25, 75 15, 70 0"/>
+      <path d="M90 90 C 80 70, 105 60, 95 40 C 88 25, 105 15, 100 0"/>
+    </svg>
+    <svg viewBox="0 0 200 200" aria-hidden="true">
+      <ellipse cx="100" cy="150" rx="86" ry="14" fill="rgba(0,0,0,0.35)"/>
+      <path d="M20 130 C20 100 60 95 100 95 C140 95 180 100 180 130 C180 150 145 150 100 150 C55 150 20 150 20 130 Z" fill="#3B2A20"/>
+      <ellipse cx="100" cy="128" rx="72" ry="20" fill="#E8622C"/>
+      <ellipse cx="100" cy="124" rx="70" ry="17" fill="#F2B705"/>
+      <g fill="#C1272D">
+        <circle cx="70" cy="118" r="3.5"/><circle cx="118" cy="130" r="3.5"/><circle cx="95" cy="112" r="3"/>
+      </g>
+      <g fill="#7C9A5C">
+        <circle cx="85" cy="126" r="3"/><circle cx="130" cy="118" r="3"/><circle cx="60" cy="128" r="2.6"/>
+      </g>
+      <circle cx="107" cy="116" r="12" fill="#FFF4D6"/>
+      <circle cx="107" cy="114" r="5.5" fill="#F2B705"/>
+    </svg>
+    <div class="shine"></div>
+  </div>
+</header>
+
+<main>
+
+  <section id="bahan">
+    <div class="kicker">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l6 6M10 4l-6 6M12 20c4-4 8-8 8-12a4 4 0 0 0-8 0 4 4 0 0 0-8 0c0 4 4 8 8 12Z"/></svg>
+      Bahan-bahan
     </div>
-    
-    <div class="options" id="optionsContainer">
-        <!-- Options will be inserted here by JavaScript -->
+    <h2>Untuk 2 porsi</h2>
+    <div class="meta-row">
+      <span>⏱ 20 menit</span>
+      <span>🔥 Api sedang–besar</span>
+      <span>🍳 Wajar pakai wajan cekung</span>
     </div>
-    
-    <div class="love-rain" id="loveRain"></div>
-    
-    <script>
-        // Create love decorations
-        for (let i = 0; i < 15; i++) {
-            createDecoration();
-        }
-        
-        function createDecoration() {
-            const love = document.createElement('div');
-            love.className = 'love-decoration';
-            love.innerHTML = '❤';
-            love.style.left = Math.random() * 100 + 'vw';
-            love.style.top = Math.random() * 100 + 'vh';
-            love.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            love.style.opacity = Math.random() * 0.5 + 0.3;
-            document.body.appendChild(love);
-        }
-        
-        // Dialog system
-        const dialogs = [
-            {
-                text: "Neroo menggaruk kepalanya, gugup, lalu menatapmu dengan serius—dan jujur.",
-                options: []
-            },
-            {
-                text: "\"Aku suka kamu. Bukan karena kamu imut aja, atau... ya, tubuh kamu yang mungil itu—justru semuanya itu bikin kamu makin nyata di mataku. Gak kayak desain UI, kamu tuh gak bisa aku drag-drop seenaknya... kamu bikin aku ngerasa... hidup.\"",
-                options: []
-            },
-            {
-                text: "\"Maukah kamu... jadi pacarku?\"",
-                options: [
-                    { text: "Gak🥱", next: 4 },
-                    { text: "Hmm Nanti Ku pikir😣", next: 5 },
-                    { text: "Aku terima Kok😆", next: 7 }
-                ]
-            },
-            {
-                text: "...........",
-                options: []
-            },
-            {
-                text: "\"Aku tahu... mungkin ini semua terdengar tiba-tiba untukmu.\"",
-                options: []
-            },
-            {
-                text: "Ia menarik napas dalam, lalu menatap lurus dengan sorot mata yang serius tapi lembut.",
-                options: []
-            },
-            {
-                text: "\"Tapi aku ingin kamu memikirkan ini dengan matang...\"",
-                options: []
-            },
-            {
-                text: "Ia tersenyum kecil, sedikit gugup tapi tulus.",
-                options: []
-            },
-            {
-                text: "\"Karena perasaanku ini... tulus. Tulus seperti kode yang sempurna—tanpa bug, tanpa error, berjalan mulus dari awal sampai akhir.\"",
-                options: []
-            },
-            {
-                text: "\"Dan kalau kamu menerimaku... aku janji, aku akan terus melakukan debug untuk membuatmu bahagia setiap hari.\"",
-                options: []
-            },
-            {
-                text: "\"Kamu... serius? Maksudku, beneran serius ngomong kayak gitu?\"",
-                options: [
-                    { text: "Bercanda doang😒", next: 4 },
-                    { text: "Serius Kok😊", next: 11 }
-                ]
-            },
-            {
-                text: "Nada suaranya pelan, tapi tegas, seolah ingin memastikan bahwa apa yang ia dengar bukan cuma gurauan belaka. Ia menatapmu lekat-lekat, berharap bisa membaca kebenaran dari raut wajahmu.",
-                options: []
-            },
-            {
-                text: "\"U-uhm... kalau begitu...\" Ia menggenggam ujung bajunya, berusaha menenangkan detak jantungnya yang sedikit berdebar.",
-                options: []
-            },
-            {
-                text: "\"Bisa... bisa kau buktikan?\"",
-                options: [
-                    { text: "I Love You💓", next: 15, action: "loveRain" }
-                ]
-            }
-        ];
-        
-        let currentDialog = 0;
-        const dialogText = document.getElementById('dialogText');
-        const optionsContainer = document.getElementById('optionsContainer');
-        const loveRain = document.getElementById('loveRain');
-        
-        function showDialog(index) {
-            currentDialog = index;
-            const dialog = dialogs[index];
-            
-            // Animate text change
-            dialogText.style.animation = 'none';
-            void dialogText.offsetWidth; // Trigger reflow
-            dialogText.style.animation = 'fadeIn 0.5s forwards';
-            dialogText.textContent = dialog.text;
-            
-            // Clear previous options
-            optionsContainer.innerHTML = '';
-            
-            // Add new options if available
-            if (dialog.options && dialog.options.length > 0) {
-                dialog.options.forEach(option => {
-                    const btn = document.createElement('button');
-                    btn.className = 'option-btn';
-                    btn.textContent = option.text;
-                    btn.onclick = () => {
-                        if (option.action === 'loveRain') {
-                            startLoveRain();
-                        }
-                        if (option.next !== undefined) {
-                            showDialog(option.next);
-                        }
-                    };
-                    optionsContainer.appendChild(btn);
-                });
-            } else if (index + 1 < dialogs.length) {
-                // Auto-proceed to next dialog if no options
-                setTimeout(() => {
-                    showDialog(index + 1);
-                }, 3000);
-            }
-        }
-        
-        function startLoveRain() {
-            loveRain.style.display = 'block';
-            
-            // Create love elements
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const love = document.createElement('div');
-                    love.className = 'love';
-                    love.innerHTML = '❤';
-                    love.style.left = Math.random() * 100 + 'vw';
-                    love.style.top = -20 + 'px';
-                    love.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    love.style.opacity = Math.random() * 0.7 + 0.3;
-                    love.style.fontSize = (Math.random() * 10 + 15) + 'px';
-                    loveRain.appendChild(love);
-                    
-                    // Remove love element after animation
-                    setTimeout(() => {
-                        love.remove();
-                    }, 5000);
-                }, i * 200);
-            }
-            
-            // Hide after some time
-            setTimeout(() => {
-                loveRain.style.display = 'none';
-                loveRain.innerHTML = '';
-            }, 5000);
-        }
-        
-        // Start with first dialog
-        showDialog(0);
-    </script>
+    <div class="ing-grid">
+      <div class="ing" style="--i:1"><b>Utama</b>2 piring nasi putih dingin</div>
+      <div class="ing" style="--i:2"><b>Utama</b>2 butir telur</div>
+      <div class="ing" style="--i:3"><b>Bumbu</b>3 siung bawang putih, cincang</div>
+      <div class="ing" style="--i:4"><b>Bumbu</b>5 siung bawang merah, iris</div>
+      <div class="ing" style="--i:5"><b>Bumbu</b>3 buah cabai merah, iris</div>
+      <div class="ing" style="--i:6"><b>Saus</b>2 sdm kecap manis</div>
+      <div class="ing" style="--i:7"><b>Saus</b>1 sdm saus tiram</div>
+      <div class="ing" style="--i:8"><b>Saus</b>½ sdt garam &amp; merica</div>
+      <div class="ing" style="--i:9"><b>Pelengkap</b>Daun bawang, irisan</div>
+      <div class="ing" style="--i:10"><b>Pelengkap</b>Kerupuk &amp; acar timun</div>
+      <div class="ing" style="--i:11"><b>Minyak</b>3 sdm minyak goreng</div>
+      <div class="ing" style="--i:12"><b>Opsional</b>Ayam suwir / bakso iris</div>
+    </div>
+  </section>
+
+  <section id="langkah">
+    <div class="kicker">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h10"/></svg>
+      Cara Membuat
+    </div>
+    <h2>6 langkah mudah</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><h3>Siapkan nasi</h3><p>Gunakan nasi putih yang sudah dingin dan sedikit mengeras — ini kunci nasi goreng tidak lembek dan menggumpal.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><h3>Orak-arik telur</h3><p>Panaskan minyak, kocok lepas telur lalu orak-arik hingga setengah matang. Sisihkan di pinggir wajan.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><h3>Tumis bumbu
+          <svg class="flame" viewBox="0 0 24 24"><path d="M12 2c1 4-4 5-4 9a4 4 0 0 0 8 0c0-2-1-3-1-5 2 1 3 3 3 6a6 6 0 0 1-12 0C6 7 9 5 12 2Z" fill="#E8622C"/></svg>
+        </h3><p>Masukkan bawang putih, bawang merah, dan cabai. Tumis dengan api sedang hingga harum dan layu.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><h3>Masukkan nasi</h3><p>Besarkan api, masukkan nasi sambil diaduk cepat dan ditekan-tekan agar bumbu merata ke setiap butir.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><h3>Beri saus</h3><p>Tuang kecap manis, saus tiram, garam, dan merica. Aduk rata hingga warna nasi kecoklatan merata.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div><h3>Sajikan panas</h3><p>Taburi daun bawang, tambahkan telur mata sapi di atasnya, lengkapi dengan kerupuk dan acar timun.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sajian">
+    <div class="kicker">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+      Penyajian
+    </div>
+    <h2>Siap disantap</h2>
+    <div class="plate-wrap">
+      <svg class="plate" viewBox="0 0 220 220" aria-hidden="true">
+        <circle cx="110" cy="110" r="100" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+        <circle class="ring" cx="110" cy="110" r="86" fill="none" stroke="var(--turmeric)" stroke-width="2" opacity=".5"/>
+        <path d="M55 130 C55 105 85 100 110 100 C135 100 165 105 165 130 C165 148 138 148 110 148 C82 148 55 148 55 130Z" fill="#F2B705"/>
+        <g fill="#E8622C" opacity=".85">
+          <circle cx="80" cy="118" r="3"/><circle cx="130" cy="128" r="3"/><circle cx="150" cy="115" r="2.6"/><circle cx="95" cy="140" r="2.6"/>
+        </g>
+        <g fill="#7C9A5C">
+          <circle cx="70" cy="130" r="2.6"/><circle cx="140" cy="140" r="2.6"/><circle cx="115" cy="108" r="2.4"/>
+        </g>
+        <circle cx="112" cy="113" r="14" fill="#FFF4D6"/>
+        <circle cx="112" cy="110" r="6" fill="#F2B705"/>
+        <path d="M60 150 q10 6 20 0" stroke="#C0392B" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+      </svg>
+    </div>
+    <div class="note">Nasi goreng paling nikmat disantap selagi panas. Sisa nasi goreng bisa disimpan di kulkas maksimal 1 hari dan dipanaskan kembali di wajan, bukan microwave, agar teksturnya tidak lembek.</div>
+  </section>
+
+</main>
+
+<footer>Selamat memasak 🍳</footer>
+
 </body>
 </html>
